@@ -22,9 +22,6 @@ section .bss
         
     cadena:
         resb 0x0100 ; 256 bytes
-
-    cadenaIngresada:
-        resb 0x0100 ; 256 bytes
         
     caracter: ; 4 bytes
         resb 1 ; 1 byte (dato)
@@ -41,7 +38,7 @@ section .data
         db 0xA, 0 ; SALTO DE LINEA (LF)
     pedirCadenaMnsj:
         db "Ingrese una cadena de caracteres: ", 0
-    espcaio:
+    espacio:
         db " ", 0
     dosPuntos:
         db ": ", 0
@@ -67,12 +64,36 @@ mostrarCaracter: ; RUTINA PARA MOSTRAR UN CARACTER USANDO PRINTF
     add esp, 8 
     ret
 
+mostrarCadenaPedirCadenaMnsj:
+    push pedirCadenaMnsj
+    push fmtString 
+    call printf 
+    add esp, 8 
+    ret
+
+mostrarCadenaEspcaio:
+    push espacio
+    push fmtString 
+    call printf 
+    add esp, 8 
+    ret
+
+mostrarCadenaDosPuntos:
+    push dosPuntos
+    push fmtString 
+    call printf 
+    add esp, 8 
+    ret
+
 
 salirDelPrograma: ; PUNTO DE SALIDA DEL PROGRAMA USANDO EXIT
     push 0
     call exit
 
 siguienteCaracter:
+    call mostrarCadena
+    call mostrarCadenaDosPuntos
+
     mov edi, 0
     for:
         mov eax, dword[edi + cadena]
@@ -93,7 +114,7 @@ siguienteCaracter:
             div ecx
             cmp edx, 0 ; if edx != 0 esta en la vuelta impar
             jne salir
-            
+
             mov edi, 1 ; contador = 1 ; impares
 
             jmp for
@@ -108,9 +129,7 @@ siguienteCaracter:
 
 main:
 _start:
+    call mostrarCadenaPedirCadenaMnsj
     call leerCadena
-
-    mov eax, [cadena]
-    mov [cadenaIngresada], eax 
 
     call siguienteCaracter

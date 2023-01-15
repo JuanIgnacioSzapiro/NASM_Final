@@ -24,10 +24,12 @@ section .data
         db "%d", 0 ; FORMATO PARA NUMEROS ENTEROS
     fmtString:
         db "%s", 0 ; FORMATO PARA CADENAS
+    pedirUnAnio:
+        db "Ingrese un anio: ", 0
     esBisiesto:
-        db "Es un año bisiesto", 0 
+        db "Es un anio bisiesto", 0 
     noEsBisiesto:
-        db "No es un año bisiesto", 0 
+        db "No es un anio bisiesto", 0 
 
 section .text
     mostrarCadena: ; RUTINA PARA MOSTRAR UNA CADENA USANDO PRINTF
@@ -45,6 +47,12 @@ section .text
     salirDelPrograma: ; PUNTO DE SALIDA DEL PROGRAMA USANDO EXIT
         push 0
         call exit
+    mostrarPedirUnAnio:
+        push pedirUnAnio
+        push fmtString 
+        call printf 
+        add esp, 8 
+        ret
     mostrarRsultadoNegativo:
         push noEsBisiesto
         push fmtString 
@@ -59,6 +67,7 @@ section .text
         ret
 main:
 start:
+    call mostrarPedirUnAnio
     call leerNumero
 
     mov eax, [numero]
