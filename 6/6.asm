@@ -90,7 +90,7 @@ section .text
     ret
 
 main:
-start:
+_start:
     call inicializar
     call mostrarPedirCantidadTerminos
     call leerNumero

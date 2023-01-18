@@ -66,7 +66,7 @@ section .text
         add esp, 8 
         ret
 main:
-start:
+_start:
     call mostrarPedirUnAnio
     call leerNumero
 

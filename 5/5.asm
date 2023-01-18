@@ -294,6 +294,6 @@ terminar:
     ret
 
 main:
-start:
+_start:
     call inicializar
     call llevarCuenta

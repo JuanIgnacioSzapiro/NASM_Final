@@ -242,7 +242,7 @@ terminar: ; simplemente muestra los mensajes y termina el programa
     ret
 
 main:
-start:
+_start:
     call inicializar
     
     call llevarCuenta
