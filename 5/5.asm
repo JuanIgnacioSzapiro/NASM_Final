@@ -130,7 +130,7 @@ mostrarMnsj:
     ret
 
 llevarCuenta:
-    mov eax, 100 ; if ( contadorCantCaract > 100 )
+    mov eax, 5 ; if ( contadorCantCaract > 100 )
     cmp [contadorCantCaract], eax
     jg terminar
 
@@ -158,6 +158,10 @@ siguienteIteracion:
     ret
 
 armarArrayCaracteres:
+    mov al, byte dword[cadena + 0]
+    cmp al, 0
+    je siguienteIteracion
+
     mov ecx, 0
     mov al, byte [cadena + ecx] ; se lo saca de cadena porque solo quiero el primer caracter y si la entrada aceptaba un solo char corria riesgo de crasheo
 
