@@ -130,7 +130,7 @@ mostrarMnsj:
     ret
 
 llevarCuenta:
-    mov eax, 5 ; if ( contadorCantCaract > 100 )
+    mov eax, 15 ; if ( contadorCantCaract > 100 )
     cmp [contadorCantCaract], eax
     jg terminar
 

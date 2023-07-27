@@ -97,7 +97,7 @@ siguienteCaracter:
     mov edi, 0
     for:
         mov eax, dword[edi + cadena]
-        mov [caracter], al 
+        mov [caracter], al
 
         call mostrarCaracter
 
@@ -118,7 +118,7 @@ siguienteCaracter:
             mov edi, 1 ; contador = 1 ; impares
 
             jmp for
-
+        
         siguienteIteracion:
             add edi, 2
 
